@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   TextField,
   Button,
@@ -13,13 +13,13 @@ import {
   OutlinedInput,
   FormHelperText,
   Box,
-} from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { CreateSessionInput, createSessionSchema } from '@/schema/schema';
-import { checkError } from '@/util';
-import api from '@/api';
-import { get } from 'lodash';
-import { useRouter } from 'next/navigation';
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { CreateSessionInput, createSessionSchema } from "@/schema/schema";
+import { checkError } from "@/util";
+import api from "@/api";
+import { get } from "lodash";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState<string | null>(null);
@@ -43,61 +43,61 @@ const LoginForm = () => {
   };
 
   const onSubmit = async (data: CreateSessionInput) => {
-    const res: any = await api(
+    api(
       `sessions`,
-      'POST',
+      "POST",
       data,
-      { withCredentials: true }, // add this to set cookies in browser
-    );
-
-    if (res?.error) {
-      setLoginError(get(res, 'error.message', ''));
-    } else {
-      if (res?.data) {
-        router.push('/');
+      { withCredentials: true } // add this to set cookies in browser
+    ).then((res) => {
+      if (res && res.error) {
+        setLoginError(get(res, "error.message", ""));
+      } else {
+        if (res && res.data) {
+          router.push("/");
+        }
       }
-    }
+    });
   };
 
   return (
     <Box
       component="form"
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         padding: 3,
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Box height={'1rem'}>
+      <Box height={"1rem"}>
         {loginError && (
-          <FormHelperText sx={{ color: 'red' }}>{loginError}</FormHelperText>
+          <FormHelperText sx={{ color: "red" }}>{loginError}</FormHelperText>
         )}
       </Box>
       <TextField
         autoComplete="off"
-        {...register('email', { required: true })}
+        {...register("email", { required: true })}
         label="Email"
         error={!!errors.email}
         helperText={checkError(errors.email?.message)}
         fullWidth
         margin="normal"
-        sx={{ mb: 2, width: '50%' }}
+        sx={{ mb: 2, width: "50%" }}
       />
       <FormControl
         fullWidth
         margin="normal"
         variant="outlined"
         error={!!errors.password}
-        sx={{ mb: 2, width: '50%' }}
+        sx={{ mb: 2, width: "50%" }}
       >
         <InputLabel htmlFor="password">Password</InputLabel>
         <OutlinedInput
           id="password"
-          type={showPassword ? 'text' : 'password'}
+          type={showPassword ? "text" : "password"}
           label="Password"
-          {...register('password', { required: true })}
+          {...register("password", { required: true })}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -113,7 +113,7 @@ const LoginForm = () => {
         />
         <FormHelperText>{checkError(errors.password?.message)}</FormHelperText>
       </FormControl>
-      <Box sx={{ mb: 2, width: '50%' }}>
+      <Box sx={{ mb: 2, width: "50%" }}>
         <Button type="submit" variant="outlined" fullWidth>
           Login
         </Button>
