@@ -1,12 +1,14 @@
 "use client";
 
 import useSWR from "swr";
-import { Box, Button, FormHelperText, Grid, Typography } from "@mui/material";
-import { fetcher } from "@/util";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import { fetcher, getObjFromLocalStorage, setObjToStorage } from "@/util";
 import { useRouter } from "next/navigation";
 import { addNewProduct, route } from "@/common/constants/routes";
 import { webContainerPadding } from "@/styles/global.style";
 import { color } from "@/styles/colors";
+import { get } from "lodash";
+import { UserRole } from "@/common/constants/user-role";
 
 const Home = () => {
   const { data, error } = useSWR(
@@ -14,6 +16,13 @@ const Home = () => {
     fetcher
   );
   const router = useRouter();
+
+  if (get(data, "_id")) {
+    setObjToStorage(data, "user");
+  }
+
+  const authorizedUser =
+    get(getObjFromLocalStorage("user"), "role") === UserRole.superAdmin;
 
   return (
     <Grid container p={webContainerPadding}>
@@ -37,7 +46,9 @@ const Home = () => {
       {data && (
         <Grid item xs={12} sm={12} md={8} lg={6}>
           <Box textAlign={"center"} pb="1rem">
-            <Typography color={color.main.primary}>Welcome {data.name}</Typography>
+            <Typography color={color.main.primary}>
+              Welcome {data.name}
+            </Typography>
           </Box>
 
           <Box sx={{ mt: 2, mb: 2 }}>
@@ -67,6 +78,17 @@ const Home = () => {
               LIVE WEB-APP
             </Button>
           </Box>
+          {authorizedUser && (
+            <Box sx={{ mt: 2, mb: 2 }}>
+              <Button
+                fullWidth
+                variant="outlined"
+                onClick={() => router.push(route.register.l)}
+              >
+                ADD USER
+              </Button>
+            </Box>
+          )}
         </Grid>
       )}
 

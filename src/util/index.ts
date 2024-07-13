@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from "axios";
 
 export const checkError = (message: any) =>
-  typeof message === 'string' ? message : '';
+  typeof message === "string" ? message : "";
 
 export const apiSuccess = (responseStatus: number) =>
   responseStatus >= 200 && responseStatus <= 299;
@@ -17,7 +17,7 @@ export type ResponseType = {
 };
 
 export const checkResponse = async (
-  res: AxiosResponse<any, any> | null,
+  res: AxiosResponse<any, any> | null
 ): Promise<ResponseType> => {
   if (res) {
     const responseStatus = res.status;
@@ -65,7 +65,7 @@ export function hasNumber(myString: string) {
 
 export const splitBrief: any = (brief: string) => {
   const details: any = {};
-  brief.split('*').forEach((brief, index) => {
+  brief.split("*").forEach((brief, index) => {
     details[`brief${index + 1}`] = brief;
   });
   return details;
@@ -86,7 +86,7 @@ export const getCombinedString = (data: any) => {
 export function objectToFormData(
   data: Record<string, any>,
   formData: FormData = new FormData(),
-  parentKey?: string,
+  parentKey?: string
 ): FormData {
   Object.keys(data).forEach((key) => {
     const value = data[key];
@@ -101,7 +101,7 @@ export function objectToFormData(
         const arrayKey = `${formKey}[${index}]`;
         objectToFormData({ [arrayKey]: element }, formData);
       });
-    } else if (typeof value === 'object' && value !== null) {
+    } else if (typeof value === "object" && value !== null) {
       objectToFormData(value, formData, formKey);
     } else {
       formData.append(formKey, value);
@@ -111,13 +111,11 @@ export function objectToFormData(
   return formData;
 }
 
-// Example usage
-// const data = {
-//     fieldName1: 'value1',
-//     fieldName2: 'value2',
-//     files: [file1, file2], // Assuming file1 and file2 are File objects
-//     nested: {
-//         innerField1: 'innerValue1',
-//         innerArray: ['arrayValue1', 'arrayValue2']
-//     }
-// };
+export const setObjToStorage = (obj: any, keyName: string): void => {
+  localStorage.setItem(keyName, JSON.stringify(obj));
+};
+
+export const getObjFromLocalStorage = (keyName: string): object => {
+  const retrievedObject = localStorage.getItem(keyName);
+  return JSON.parse(retrievedObject);
+};
