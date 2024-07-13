@@ -1,8 +1,8 @@
-import { Box, Typography } from "@mui/material";
-import { color } from "@global/colors";
-import { fontWeight } from "@global/font";
+import { Box, Typography } from '@mui/material';
+import { color } from '@global/colors';
+import { fontWeight } from '@global/font';
 
-import { fallBackStyle } from "../styles/style";
+import { fallBackStyle } from '../styles/style';
 
 const FallBack = () => (
   <Box sx={fallBackStyle.WipBg}>

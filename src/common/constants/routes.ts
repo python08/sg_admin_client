@@ -2,15 +2,15 @@
 // c => main route inner link
 export const route = {
   adminProducts: {
-    l: "/admin-products",
+    l: '/admin-products',
     c: {
-      addProduct: "/add-product",
+      addProduct: '/add-product',
     },
   },
   preview: {
-    l: "/preview",
+    l: '/preview',
     c: {
-      home: "/home",
+      home: '/home',
     },
   },
 };

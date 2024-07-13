@@ -1,1 +1,1 @@
-export { default as MuiCard } from "@mui/material/Card";
+export { default as MuiCard } from '@mui/material/Card';

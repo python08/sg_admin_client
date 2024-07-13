@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { WhatsappShare } from "@components/WhatsappShare/WhatsappShare";
-import { color } from "@global/colors";
-import { fontSize, fontWeight } from "@global/font";
-import { FiberManualRecord } from "@mui/icons-material";
-import { Box, Grid, List, ListItem, Typography } from "@mui/material";
-import FlexViewProductList from "@content/products/view/flex/ProductList";
-import CurrencyRupeeRoundedIcon from "@mui/icons-material/CurrencyRupeeRounded";
-import { displayFlexAlignCenter } from "@global/global.style";
-import { ProductsType } from "@common/temp/temp";
-import { isEmpty } from "lodash";
-import ProductQuantity from "../quantity/ProductQuantity";
-import { Section } from "../constant/main";
+import { useState } from 'react';
+import { WhatsappShare } from '@components/WhatsappShare/WhatsappShare';
+import { color } from '@global/colors';
+import { fontSize, fontWeight } from '@global/font';
+import { FiberManualRecord } from '@mui/icons-material';
+import { Box, Grid, List, ListItem, Typography } from '@mui/material';
+import FlexViewProductList from '@content/products/view/flex/ProductList';
+import CurrencyRupeeRoundedIcon from '@mui/icons-material/CurrencyRupeeRounded';
+import { displayFlexAlignCenter } from '@global/global.style';
+import { ProductsType } from '@common/temp/temp';
+import { isEmpty } from 'lodash';
+import ProductQuantity from '../quantity/ProductQuantity';
+import { Section } from '../constant/main';
 
 type ProductDetailsProps = {
   title: string;
@@ -57,10 +57,13 @@ const ProductDetails = (props: ProductDetailsProps) => {
         </Box>
         <Box>
           <List>
-            {brief.split("*").map((data: string) => (
-              <ListItem sx={{ padding: "0.3rem 0.3rem 0.3rem 0rem" }}>
+            {brief.split('*').map((data: string) => (
+              <ListItem
+                key={data}
+                sx={{ padding: '0.3rem 0.3rem 0.3rem 0rem' }}
+              >
                 <FiberManualRecord
-                  sx={{ fontSize: "small", marginRight: "5px" }}
+                  sx={{ fontSize: 'small', marginRight: '5px' }}
                 />
                 <Typography
                   variant="subtitle2"

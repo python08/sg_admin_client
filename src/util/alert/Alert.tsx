@@ -1,8 +1,8 @@
-import Snackbar from "@mui/material/Snackbar";
-import { Alert, AlertColor, Fade } from "@mui/material";
-import { uniqueId } from "lodash";
-import { apiClientError, apiServerError, apiSuccess } from "..";
-import { useEffect, useState } from "react";
+import Snackbar from '@mui/material/Snackbar';
+import { Alert, AlertColor, Fade } from '@mui/material';
+import { uniqueId } from 'lodash';
+import { apiClientError, apiServerError, apiSuccess } from '..';
+import { useEffect, useState } from 'react';
 
 type ApiAlertProps = {
   responseStatus: number;
@@ -87,7 +87,7 @@ export const TransitionsSnackbar = ({
       autoHideDuration={4000}
       onClose={handleClose}
     >
-      <Alert severity={severity} variant="filled" sx={{ width: "100%" }}>
+      <Alert severity={severity} variant="filled" sx={{ width: '100%' }}>
         {message}
       </Alert>
     </Snackbar>

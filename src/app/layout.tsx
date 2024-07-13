@@ -1,30 +1,31 @@
-"use client";
+'use client';
 
-import { Inter } from "next/font/google";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import globalTheme from "../theme";
-import { ReactNode, createContext, useMemo, useState } from "react";
-import { CssBaseline } from "@mui/material";
+import { Inter } from 'next/font/google';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import globalTheme from '../theme';
+import { ReactNode, useMemo, useState } from 'react';
+import { CssBaseline } from '@mui/material';
+import ColorModeContext, { ColorModeContextType } from './context';
 // or `v1X-appRouter` if you are using Next.js v1X
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const [mode, setMode] = useState<"light" | "dark">("light");
-  const colorMode = useMemo(
+  const [mode, setMode] = useState<'light' | 'dark'>('light');
+  const colorMode: ColorModeContextType = useMemo(
     () => ({
       toggleColorMode: () => {
         setMode((prevMode: string) =>
-          prevMode === "light" ? "dark" : "light"
+          prevMode === 'light' ? 'dark' : 'light',
         );
       },
     }),
-    []
+    [],
   );
 
   const theme = useMemo(() => {
@@ -52,7 +53,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-export const ColorModeContext = createContext({
-  toggleColorMode: () => {},
-});

@@ -1,10 +1,10 @@
-import { Box, Button, CardMedia, Grid } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { Categories, ProductViewProps } from "@common/temp/temp";
-import ProductDetails from "../details/ProductDetails";
-import { getProductByCategory } from "../utils/utils";
-import AlertDialog from "@/common/components/Dialog/AlertDialog";
+import { Box, Button, CardMedia, Grid } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Categories, ProductViewProps } from '@common/temp/temp';
+import ProductDetails from '../details/ProductDetails';
+import { getProductByCategory } from '../utils/utils';
+import AlertDialog from '@/common/components/Dialog/AlertDialog';
 
 const ProductView = (props: ProductViewProps) => {
   const {

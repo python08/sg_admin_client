@@ -1,4 +1,4 @@
-import { MouseEventHandler, useRef } from "react";
+import { MouseEventHandler, useRef } from 'react';
 import {
   Card,
   CardActionArea,
@@ -6,14 +6,14 @@ import {
   SxProps,
   Theme,
   Zoom,
-} from "@mui/material";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { color } from "@global/colors";
-import { fontWeight } from "@global/font";
-import { useIsVisible } from "@common/hooks/UseIsVisible";
-import StatusChip from "../chip/StatusChip";
+} from '@mui/material';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { color } from '@global/colors';
+import { fontWeight } from '@global/font';
+import { useIsVisible } from '@common/hooks/UseIsVisible';
+import StatusChip from '../chip/StatusChip';
 
 type ProductCardType = {
   title: string;
@@ -47,7 +47,7 @@ const ProductCard = (props: ProductCardType) => {
   const renderChip = (isActive: boolean | undefined) => {
     return (
       <StatusChip
-        message={isActive ? "Active" : "Inactive"}
+        message={isActive ? 'Active' : 'Inactive'}
         isActive={isActive}
       />
     );
@@ -65,7 +65,7 @@ const ProductCard = (props: ProductCardType) => {
             alt={title}
           />
         </Zoom>
-        <CardContent sx={{ height: "7rem" }}>
+        <CardContent sx={{ height: '7rem' }}>
           <Typography
             gutterBottom
             variant="subtitle1"

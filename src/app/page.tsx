@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import useSWR from "swr";
-import { Box, Button, FormHelperText } from "@mui/material";
-import { fetcher } from "@/util";
-import { useRouter } from "next/navigation";
-import { addNewProduct, route } from "@/common/constants/routes";
+import useSWR from 'swr';
+import { Box, Button, FormHelperText } from '@mui/material';
+import { fetcher } from '@/util';
+import { useRouter } from 'next/navigation';
+import { addNewProduct, route } from '@/common/constants/routes';
 
 const Home = () => {
   const { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/me`,
-    fetcher
+    fetcher,
   );
   const router = useRouter();
 
@@ -17,22 +17,22 @@ const Home = () => {
     <Box
       component="form"
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
         padding: 3,
       }}
     >
-      <Box height={"1rem"}>
+      <Box height={'1rem'}>
         {error && (
           <>
-            <FormHelperText sx={{ color: "red" }}>please login</FormHelperText>
+            <FormHelperText sx={{ color: 'red' }}>please login</FormHelperText>
 
-            <Box sx={{ mb: 2, width: "50%" }}>
+            <Box sx={{ mb: 2, width: '50%' }}>
               <Button
                 variant="outlined"
                 fullWidth
-                onClick={() => router.push("/login")}
+                onClick={() => router.push('/login')}
               >
                 Login
               </Button>
@@ -40,14 +40,14 @@ const Home = () => {
           </>
         )}
         {data && (
-          <FormHelperText sx={{ color: "blue" }}>
+          <FormHelperText sx={{ color: 'blue' }}>
             Welcome {data.name}
           </FormHelperText>
         )}
       </Box>
       {data && (
         <>
-          <Box sx={{ mt: 2, mb: 2, width: "50%" }}>
+          <Box sx={{ mt: 2, mb: 2, width: '50%' }}>
             <Button
               fullWidth
               variant="outlined"
@@ -56,7 +56,7 @@ const Home = () => {
               Add Product
             </Button>
           </Box>
-          <Box sx={{ mt: 2, mb: 2, width: "50%" }}>
+          <Box sx={{ mt: 2, mb: 2, width: '50%' }}>
             <Button
               fullWidth
               variant="outlined"
@@ -65,7 +65,7 @@ const Home = () => {
               View or Update Products
             </Button>
           </Box>
-          <Box sx={{ mt: 2, mb: 2, width: "50%" }}>
+          <Box sx={{ mt: 2, mb: 2, width: '50%' }}>
             <Button
               fullWidth
               variant="outlined"

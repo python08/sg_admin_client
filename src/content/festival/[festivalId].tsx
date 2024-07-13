@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { Box } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 const Festival = () => {
   const router = useRouter();

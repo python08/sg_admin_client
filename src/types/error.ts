@@ -1,4 +1,4 @@
 export type ErrorType = {
-  result: "error" | "success" | "";
+  result: 'error' | 'success' | '';
   message: string;
 };

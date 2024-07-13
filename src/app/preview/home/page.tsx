@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { ProductsType } from "@common/temp/temp";
-import FallBack from "@components/ErrorFallBack/FallBack";
+import { ProductsType } from '@common/temp/temp';
+import FallBack from '@components/ErrorFallBack/FallBack';
 
-import { getUpdates } from "@/api/updates/updates";
-import { getAllProducts } from "@/api/product/product";
-import Body from "@/content/main-page/body/Body";
-import { useEffect, useState } from "react";
+import { getUpdates } from '@/api/updates/updates';
+import { getAllProducts } from '@/api/product/product';
+import Body from '@/content/main-page/body/Body';
+import { useEffect, useState } from 'react';
 
 /* eslint-disable */
 export default function Home() {

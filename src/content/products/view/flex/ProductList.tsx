@@ -1,7 +1,7 @@
-import { ProductsType } from "@common/temp/temp";
-import FlexViewProductCard from "@content/products/card/FlexViewProductCard";
-import { displayFlexCenter } from "@global/global.style";
-import { Box } from "@mui/material";
+import { ProductsType } from '@common/temp/temp';
+import FlexViewProductCard from '@content/products/card/FlexViewProductCard';
+import { displayFlexCenter } from '@global/global.style';
+import { Box } from '@mui/material';
 
 type ProductListType = {
   products: ProductsType[];
@@ -14,11 +14,11 @@ const FlexViewProductList = ({
   productCardHeight,
   section,
 }: ProductListType) => (
-  <Box sx={[displayFlexCenter, { boxSizing: "border-box", height: "100%" }]}>
+  <Box sx={[displayFlexCenter, { boxSizing: 'border-box', height: '100%' }]}>
     <Box
       sx={[
         displayFlexCenter,
-        { overflowX: "auto", justifyContent: "flex-start" },
+        { overflowX: 'auto', justifyContent: 'flex-start' },
       ]}
     >
       {products.map((product: ProductsType) => (

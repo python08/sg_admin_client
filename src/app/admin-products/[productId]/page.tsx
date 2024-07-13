@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-import { get, isArray, omit } from "lodash";
+import { useForm } from 'react-hook-form';
+import { get, isArray, omit } from 'lodash';
 import {
   CreateProductInput,
   createProductSchema,
-} from "@/schema/product.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '@/schema/product.schema';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   getCombinedString,
   hasNumber,
   objectToFormData,
   splitBrief,
-} from "@/util";
-import api, { ApiMethod, apiOptions } from "@/api";
-import { useEffect, useState } from "react";
-import { getProductDetails } from "@/api/product/product";
-import { route } from "@/common/constants/routes";
-import AlertDialog from "@/common/components/Dialog/AlertDialog";
-import { useRouter } from "next/navigation";
-import { getAllCategories } from "@/api/category/category";
-import { getAllFestivals } from "@/api/festival/festival";
-import ProductDetailsForm from "@/content/admin-product/components/ProductDetailsForm";
-import { ProductDetailsFormProps } from "@/types/admin-product";
-import { Grid } from "@mui/material";
-import { webContainerPadding } from "@/styles/global.style";
-import { TransitionsSnackbar } from "@/util/alert/Alert";
-import { ErrorType } from "@/types/error";
+} from '@/util';
+import api, { ApiMethod, apiOptions } from '@/api';
+import { useEffect, useState } from 'react';
+import { getProductDetails } from '@/api/product/product';
+import { route } from '@/common/constants/routes';
+import AlertDialog from '@/common/components/Dialog/AlertDialog';
+import { useRouter } from 'next/navigation';
+import { getAllCategories } from '@/api/category/category';
+import { getAllFestivals } from '@/api/festival/festival';
+import ProductDetailsForm from '@/content/admin-product/components/ProductDetailsForm';
+import { ProductDetailsFormProps } from '@/types/admin-product';
+import { Grid } from '@mui/material';
+import { webContainerPadding } from '@/styles/global.style';
+import { TransitionsSnackbar } from '@/util/alert/Alert';
+import { ErrorType } from '@/types/error';
 
 type ProductPreviewProps = { params: { productId: string } };
 
@@ -37,13 +37,13 @@ const Form = ({ params }: ProductPreviewProps) => {
   // image state
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState<string | ArrayBuffer | null>(
-    null
+    null,
   );
   const [open, setOpen] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState<ErrorType>({
-    result: "",
-    message: "",
+    result: '',
+    message: '',
   });
   const [editImage, setEditImage] = useState(false);
 
@@ -67,20 +67,20 @@ const Form = ({ params }: ProductPreviewProps) => {
   // get product details, categories and festivals
   useEffect(() => {
     if (hasNumber(params.productId)) {
-      setApiCall("PUT");
+      setApiCall('PUT');
       getProductDetails(params.productId).then((res) => {
         if (res && res.data._id) {
           const brief = splitBrief(res.data.brief);
           reset({
             ...res.data,
             ...brief,
-            festivalName: get(res, "data.festivalName._id"),
-            category: get(res, "data.category._id"),
+            festivalName: get(res, 'data.festivalName._id'),
+            category: get(res, 'data.category._id'),
           });
         }
       });
     } else if (route.adminProducts.c.addProduct.includes(params.productId)) {
-      setApiCall("POST");
+      setApiCall('POST');
       setEditImage(false);
     }
 
@@ -98,21 +98,21 @@ const Form = ({ params }: ProductPreviewProps) => {
   }, []);
 
   const onSubmit = async (data: CreateProductInput) => {
-    if (apiCall === "PUT") {
+    if (apiCall === 'PUT') {
       let payload: any = {
         ...data,
         brief: getCombinedString(data),
-        user: "6662fe6bd8726f1dcd6abf61", // FP
+        user: '6662fe6bd8726f1dcd6abf61', // FP
         isActive: false,
         image: selectedImage || null, // dont want to update image
       };
-      payload = omit(payload, ["brief1", "brief2", "brief3", "brief4"]);
+      payload = omit(payload, ['brief1', 'brief2', 'brief3', 'brief4']);
 
       const res = await api(
         `product/${params.productId}`,
         apiCall,
         objectToFormData(payload),
-        apiOptions
+        apiOptions,
       );
 
       if (res.data) {
@@ -120,13 +120,13 @@ const Form = ({ params }: ProductPreviewProps) => {
         reset();
         router.push(route.adminProducts.l);
       } else if (res.error) {
-        setErrorMessage(get(res, "error.message", ""));
+        setErrorMessage(get(res, 'error.message', ''));
       }
-    } else if (apiCall === "POST") {
+    } else if (apiCall === 'POST') {
       if (!selectedImage) {
         setErrorMessage({
-          result: "error",
-          message: "Please select an image to upload",
+          result: 'error',
+          message: 'Please select an image to upload',
         });
         return;
       }
@@ -134,18 +134,18 @@ const Form = ({ params }: ProductPreviewProps) => {
       let payload: any = {
         ...data,
         brief: getCombinedString(data),
-        user: "6662fe6bd8726f1dcd6abf61",
+        user: '6662fe6bd8726f1dcd6abf61',
         isActive: false,
         image: selectedImage,
       };
 
-      payload = omit(payload, ["brief1", "brief2", "brief3", "brief4"]);
+      payload = omit(payload, ['brief1', 'brief2', 'brief3', 'brief4']);
 
       const res = await api(
         `product`,
         apiCall,
         objectToFormData(payload),
-        apiOptions
+        apiOptions,
       );
 
       if (res.data) {
@@ -153,7 +153,7 @@ const Form = ({ params }: ProductPreviewProps) => {
         reset();
         router.push(route.adminProducts.l);
       } else if (res.error) {
-        setErrorMessage(get(res, "error.message", ""));
+        setErrorMessage(get(res, 'error.message', ''));
       }
     }
   };
@@ -193,13 +193,13 @@ const Form = ({ params }: ProductPreviewProps) => {
   };
 
   const handleAlertClose = () => {
-    setErrorMessage({ result: "", message: "" });
+    setErrorMessage({ result: '', message: '' });
   };
 
   return (
     <Grid container p={webContainerPadding}>
       <TransitionsSnackbar
-        severity={errorMessage.result === "error" ? "error" : "success"}
+        severity={errorMessage.result === 'error' ? 'error' : 'success'}
         handleClose={handleAlertClose}
         message={errorMessage.message}
         open={errorMessage.result ? true : false}

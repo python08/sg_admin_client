@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import { Grid, Typography, Box, Button } from "@mui/material";
-import { style } from "@content/landing-page/style";
-import { ProductsType } from "@common/temp/temp";
-import ProductCard from "@/content/products/card/ProductCard";
-import { color } from "@global/colors";
-import Hero from "@content/landing-page/Hero";
-import HeroDescription from "@content/landing-page/HeroDescription";
-import FallBack from "@components/ErrorFallBack/FallBack";
-import { isEmpty } from "lodash";
+import Image from 'next/image';
+import Link from 'next/link';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import { Grid, Typography, Box, Button } from '@mui/material';
+import { style } from '@content/landing-page/style';
+import { ProductsType } from '@common/temp/temp';
+import ProductCard from '@/content/products/card/ProductCard';
+import { color } from '@global/colors';
+import Hero from '@content/landing-page/Hero';
+import HeroDescription from '@content/landing-page/HeroDescription';
+import FallBack from '@components/ErrorFallBack/FallBack';
+import { isEmpty } from 'lodash';
 
-import { getAllProducts } from "@/api/product/product";
-import ModakImage from "public/assests/Modak.jpg";
-import { useEffect, useState } from "react";
-import { route } from "@/common/constants/routes";
+import { getAllProducts } from '@/api/product/product';
+import ModakImage from 'public/assests/Modak.jpg';
+import { useEffect, useState } from 'react';
+import { route } from '@/common/constants/routes';
 
 /* eslint-disable */
 export default function Page() {

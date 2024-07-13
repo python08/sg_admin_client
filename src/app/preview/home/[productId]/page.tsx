@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { get, isEmpty, omit } from "lodash";
-import { ProductViewProps, ProductsType } from "@common/temp/temp";
-import ProductView from "@content/products/details-view/ProductView";
+import { useEffect, useState } from 'react';
+import { get, isEmpty, omit } from 'lodash';
+import { ProductViewProps, ProductsType } from '@common/temp/temp';
+import ProductView from '@content/products/details-view/ProductView';
 
-import { getAllProducts, getProductDetails } from "@/api/product/product";
-import api, { apiOptions } from "@/api";
-import { objectToFormData } from "@/util";
-import { TransitionsSnackbar } from "@/util/alert/Alert";
-import { ErrorType } from "@/types/error";
-import { useRouter } from "next/navigation";
-import { allProducts } from "@/common/constants/routes";
+import { getAllProducts, getProductDetails } from '@/api/product/product';
+import api, { apiOptions } from '@/api';
+import { objectToFormData } from '@/util';
+import { TransitionsSnackbar } from '@/util/alert/Alert';
+import { ErrorType } from '@/types/error';
+import { useRouter } from 'next/navigation';
+import { allProducts } from '@/common/constants/routes';
 
 const Product = ({ params }: { params: { productId: string } }) => {
   const [productDetails, setProductDetails] = useState<ProductsType | null>(
-    null
+    null,
   );
   const [products, setProducts] = useState<ProductsType[]>([]);
 
   const [errorMessage, setErrorMessage] = useState<ErrorType>({
-    result: "",
-    message: "",
+    result: '',
+    message: '',
   });
   const [openProductActivationModal, setProductActivationModalOpen] =
     useState<boolean>(false);
@@ -41,60 +41,60 @@ const Product = ({ params }: { params: { productId: string } }) => {
   }, []);
 
   const handleActivation = async (productId: string, isActive: boolean) => {
-    const festivalName = get(productDetails, "festivalName._id");
-    const category = get(productDetails, "category._id");
-    const details = omit(productDetails, ["category", "festivalName"]);
+    const festivalName = get(productDetails, 'festivalName._id');
+    const category = get(productDetails, 'category._id');
+    const details = omit(productDetails, ['category', 'festivalName']);
 
     const res = await api(
       `product/${productId}`,
-      "PUT",
+      'PUT',
       objectToFormData({
         ...details,
         festivalName,
         category,
         isActive: !isActive,
       }),
-      apiOptions
+      apiOptions,
     );
 
     if (res.data) {
       setProductDetails(res.data);
       setErrorMessage({
-        result: "success",
+        result: 'success',
         message: `product is ${
-          get(res, "data.isActive", false) ? "active" : "inactive"
+          get(res, 'data.isActive', false) ? 'active' : 'inactive'
         }`,
       });
     } else if (res.error) {
       setErrorMessage({
-        result: "error",
-        message: get(res, "error.message", ""),
+        result: 'error',
+        message: get(res, 'error.message', ''),
       });
     }
     setProductActivationModalOpen(false);
   };
 
   const handleDeletion = async (productId: string) => {
-    const res = await api(`product/${productId}`, "DELETE", null, {
+    const res = await api(`product/${productId}`, 'DELETE', null, {
       withCredentials: true,
     });
     if (res.data) {
       setErrorMessage({
-        result: "success",
-        message: "product is deleted successfully",
+        result: 'success',
+        message: 'product is deleted successfully',
       });
     } else if (res.error) {
       setErrorMessage({
-        result: "error",
-        message: get(res, "error.message", ""),
+        result: 'error',
+        message: get(res, 'error.message', ''),
       });
     }
     setProductDeletionModalOpen(false);
-    router.push(allProducts())
+    router.push(allProducts());
   };
 
   const handleAlertClose = () => {
-    setErrorMessage({ result: "", message: "" });
+    setErrorMessage({ result: '', message: '' });
   };
 
   const handleProductActivationDesicion = (_id: string, isActive: boolean) => {
@@ -122,7 +122,7 @@ const Product = ({ params }: { params: { productId: string } }) => {
   return (
     <>
       <TransitionsSnackbar
-        severity={errorMessage.result === "error" ? "error" : "success"}
+        severity={errorMessage.result === 'error' ? 'error' : 'success'}
         handleClose={handleAlertClose}
         message={errorMessage.message}
         open={errorMessage.result ? true : false}

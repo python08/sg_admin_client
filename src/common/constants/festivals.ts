@@ -1,9 +1,9 @@
 export const FESTIVALS = {
-  0: "all",
-  1: "ganeshCharturti",
-  2: "holi",
-  3: "diwali",
-  4: "sanskrant",
+  0: 'all',
+  1: 'ganeshCharturti',
+  2: 'holi',
+  3: 'diwali',
+  4: 'sanskrant',
 } as const;
 
 // 👇️ type Keys = "id" | "name" | "salary"

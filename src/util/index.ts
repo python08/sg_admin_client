@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from 'axios';
 
 export const checkError = (message: any) =>
-  typeof message === "string" ? message : "";
+  typeof message === 'string' ? message : '';
 
 export const apiSuccess = (responseStatus: number) =>
   responseStatus >= 200 && responseStatus <= 299;
@@ -17,7 +17,7 @@ export type ResponseType = {
 };
 
 export const checkResponse = async (
-  res: AxiosResponse<any, any> | null
+  res: AxiosResponse<any, any> | null,
 ): Promise<ResponseType> => {
   if (res) {
     const responseStatus = res.status;
@@ -64,8 +64,8 @@ export function hasNumber(myString: string) {
 }
 
 export const splitBrief: any = (brief: string) => {
-  let details: any = {};
-  brief.split("*").forEach((brief, index) => {
+  const details: any = {};
+  brief.split('*').forEach((brief, index) => {
     details[`brief${index + 1}`] = brief;
   });
   return details;
@@ -83,28 +83,32 @@ export const getCombinedString = (data: any) => {
  * @param {string} [parentKey] - The parent key for nested objects (optional)
  * @returns {FormData} - The FormData object with appended key-value pairs
  */
-export function objectToFormData(data: Record<string, any>, formData: FormData = new FormData(), parentKey?: string): FormData {
-    Object.keys(data).forEach(key => {
-        const value = data[key];
-        const formKey = parentKey ? `${parentKey}[${key}]` : key;
-        
-        if (value instanceof Date) {
-            formData.append(formKey, value.toISOString());
-        } else if (value instanceof File) {
-            formData.append(formKey, value);
-        } else if (Array.isArray(value)) {
-            value.forEach((element, index) => {
-                const arrayKey = `${formKey}[${index}]`;
-                objectToFormData({ [arrayKey]: element }, formData);
-            });
-        } else if (typeof value === 'object' && value !== null) {
-            objectToFormData(value, formData, formKey);
-        } else {
-            formData.append(formKey, value);
-        }
-    });
+export function objectToFormData(
+  data: Record<string, any>,
+  formData: FormData = new FormData(),
+  parentKey?: string,
+): FormData {
+  Object.keys(data).forEach((key) => {
+    const value = data[key];
+    const formKey = parentKey ? `${parentKey}[${key}]` : key;
 
-    return formData;
+    if (value instanceof Date) {
+      formData.append(formKey, value.toISOString());
+    } else if (value instanceof File) {
+      formData.append(formKey, value);
+    } else if (Array.isArray(value)) {
+      value.forEach((element, index) => {
+        const arrayKey = `${formKey}[${index}]`;
+        objectToFormData({ [arrayKey]: element }, formData);
+      });
+    } else if (typeof value === 'object' && value !== null) {
+      objectToFormData(value, formData, formKey);
+    } else {
+      formData.append(formKey, value);
+    }
+  });
+
+  return formData;
 }
 
 // Example usage

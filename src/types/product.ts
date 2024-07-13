@@ -1,5 +1,5 @@
-import { CategoriesKeys } from "./category";
-import { FestivalsE } from "./festival";
+import { CategoriesKeys } from './category';
+import { FestivalsE } from './festival';
 
 export type ProductsType = {
   _id: string;

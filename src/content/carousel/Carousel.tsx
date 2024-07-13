@@ -1,12 +1,12 @@
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useSwipeable } from "react-swipeable";
-import Card from "@components/Card/component/Card";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Box } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useSwipeable } from 'react-swipeable';
+import Card from '@components/Card/component/Card';
 
-import { style } from "./style";
-import { CarouselType, SliderCardData } from "./model";
+import { style } from './style';
+import { CarouselType, SliderCardData } from './model';
 
 const Carousel = ({ sliderData }: CarouselType) => {
   const [current, setCurrent] = useState(0);
@@ -47,14 +47,14 @@ const Carousel = ({ sliderData }: CarouselType) => {
         <KeyboardArrowLeftIcon
           fontSize="large"
           onClick={prevSlide}
-          sx={{ color: "#E3E5E7" }}
+          sx={{ color: '#E3E5E7' }}
         />
       </Box>
       <Box sx={style.RightArrow}>
         <KeyboardArrowRightIcon
           fontSize="large"
           onClick={nextSlide}
-          sx={{ color: "#E3E5E7" }}
+          sx={{ color: '#E3E5E7' }}
         />
       </Box>
       {sliderData.map((data: SliderCardData, index: number) => {

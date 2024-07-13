@@ -1,11 +1,11 @@
-import { useRef } from "react";
-import { useRouter } from "next/navigation";
-import { Card, CardActionArea, Zoom } from "@mui/material";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { useIsVisible } from "@common/hooks/UseIsVisible";
-import { previewProductDetailsRoute } from "@/common/constants/routes";
+import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { Card, CardActionArea, Zoom } from '@mui/material';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { useIsVisible } from '@common/hooks/UseIsVisible';
+import { previewProductDetailsRoute } from '@/common/constants/routes';
 
 type ProductCardType = {
   alt: string;
@@ -26,8 +26,8 @@ const FlexViewProductCard = (props: ProductCardType) => {
 
   // FP remove this later, added to remove amplify build error
   const Section = {
-    main: "main",
-    suggested: "suggested",
+    main: 'main',
+    suggested: 'suggested',
   };
 
   const handleNavigate = (id: string) => {
@@ -41,7 +41,7 @@ const FlexViewProductCard = (props: ProductCardType) => {
   return (
     <Card
       sx={{
-        boxShadow: "none",
+        boxShadow: 'none',
         opacity: isVisible ? 1 : 0.4,
       }}
       ref={ref}
@@ -52,13 +52,13 @@ const FlexViewProductCard = (props: ProductCardType) => {
             component="img"
             image={img}
             alt={alt}
-            sx={{ height: `${cardMediaHeight}`, width: "10rem", opacity: 1 }}
+            sx={{ height: `${cardMediaHeight}`, width: '10rem', opacity: 1 }}
           />
         </Zoom>
       </CardActionArea>
       <CardContent
         sx={{
-          boxShadow: "none",
+          boxShadow: 'none',
         }}
       >
         <Typography variant="subtitle1" component="h1" lineHeight={lineHeight}>

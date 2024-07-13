@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { ReactNode } from "react";
-import { color } from "@global/colors";
-import { webkitTapHighlightColor } from "@global/global.style";
+import Link from 'next/link';
+import { ReactNode } from 'react';
+import { color } from '@global/colors';
+import { webkitTapHighlightColor } from '@global/global.style';
 
 type PlatFormLinkType = {
   icon: ReactNode;

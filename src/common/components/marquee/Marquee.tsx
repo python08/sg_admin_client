@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
-import { color } from "@global/colors";
+import { ReactNode } from 'react';
+import { color } from '@global/colors';
 
-import { style } from "./style";
+import { style } from './style';
 
 type MarqueeProps = {
   children: ReactNode;
@@ -9,15 +9,15 @@ type MarqueeProps = {
 };
 
 const Marquee = ({ children, speed }: MarqueeProps) => {
-  const animationDuration = speed ? `${speed}s` : "15s"; // Adjust speed based on prop
+  const animationDuration = speed ? `${speed}s` : '15s'; // Adjust speed based on prop
   return (
     <div className="marquee-container">
       <div className="marquee-content" style={{ animationDuration }}>
         {children}
-      </div>{" "}
+      </div>{' '}
       <div className="marquee-content" style={{ animationDuration }}>
         {children}
-      </div>{" "}
+      </div>{' '}
       {/* eslint-disable */}
       <style jsx>{`
         ${style(color.main.secondaryLight)}

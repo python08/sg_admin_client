@@ -1,5 +1,5 @@
-import { color } from "@global/colors";
-import { Typography } from "@mui/material";
+import { color } from '@global/colors';
+import { Typography } from '@mui/material';
 
 type HeadlineProps = {
   headLine: string;

@@ -1,4 +1,4 @@
-import { FormInputStyle } from "@/styles/form-input";
+import { FormInputStyle } from '@/styles/form-input';
 import {
   FormControl,
   FormHelperText,
@@ -6,8 +6,8 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-} from "@mui/material";
-import { Control, Controller } from "react-hook-form";
+} from '@mui/material';
+import { Control, Controller } from 'react-hook-form';
 
 type SelectMuiProps = {
   control: Control<any, any>;
@@ -35,7 +35,7 @@ const SelectMui = (props: SelectMuiProps) => {
     <Controller
       control={control}
       name={name}
-      defaultValue={""}
+      defaultValue={''}
       rules={{ required }}
       render={({ field: { name, value, onChange } }) => (
         <FormControl fullWidth sx={FormInputStyle}>
