@@ -17,4 +17,4 @@ export const webkitTapHighlightColor = {
   WebkitTapHighlightColor: 'transparent',
 };
 
-export const webContainerPadding = '1rem';
+export const webContainerPadding = '2rem';

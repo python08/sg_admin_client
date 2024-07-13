@@ -2,9 +2,9 @@ import {
   ImageContainerStyle,
   ImageUploadFunctionStyle,
   PreviewImageStyle,
-} from '@/styles/product';
-import { UploadProductImageProps } from '@/types/admin-product';
-import { Box, Button, CardMedia, Grid } from '@mui/material';
+} from "@/styles/product";
+import { UploadProductImageProps } from "@/types/admin-product";
+import { Box, Button, CardMedia } from "@mui/material";
 
 const UploadProductImage = (props: UploadProductImageProps) => {
   const {
@@ -20,13 +20,13 @@ const UploadProductImage = (props: UploadProductImageProps) => {
     if (!editImage) {
       return (
         <CardMedia
-          sx={{ borderRadius: '10px', height: '100%' }}
+          sx={{ borderRadius: "10px", height: "100%" }}
           component="img"
-          image={getValues('link')}
-          alt={getValues('link')}
+          image={getValues("link")}
+          alt={getValues("link")}
         />
       );
-    } else if (typeof previewImage === 'string') {
+    } else if (typeof previewImage === "string") {
       return (
         <img src={previewImage} alt="previewImage" style={PreviewImageStyle} />
       );
@@ -35,16 +35,16 @@ const UploadProductImage = (props: UploadProductImageProps) => {
   };
 
   const addNewImage = () => {
-    if (getValues('link')) {
+    if (getValues("link")) {
       return (
         <CardMedia
-          sx={{ borderRadius: '10px', height: '100%' }}
+          sx={{ borderRadius: "10px", height: "100%" }}
           component="img"
-          image={getValues('link')}
-          alt={getValues('link')}
+          image={getValues("link")}
+          alt={getValues("link")}
         />
       );
-    } else if (typeof previewImage === 'string') {
+    } else if (typeof previewImage === "string") {
       return (
         <img src={previewImage} alt="previewImage" style={PreviewImageStyle} />
       );
@@ -54,21 +54,21 @@ const UploadProductImage = (props: UploadProductImageProps) => {
   };
 
   return (
-    <Grid item xs={6}>
+    <>
       <Box sx={ImageContainerStyle}>
-        {apiCall === 'PUT' && updateImage()}
-        {apiCall === 'POST' && addNewImage()}
+        {apiCall === "PUT" && updateImage()}
+        {apiCall === "POST" && addNewImage()}
       </Box>
       <Box sx={ImageUploadFunctionStyle}>
-        {apiCall === 'PUT' &&
+        {apiCall === "PUT" &&
           (editImage ? (
             <UploadImage onImageChange={onImageChange} />
           ) : (
             <Button onClick={() => setEditImage(true)}>Edit Image</Button>
           ))}
-        {apiCall === 'POST' && <UploadImage onImageChange={onImageChange} />}
+        {apiCall === "POST" && <UploadImage onImageChange={onImageChange} />}
       </Box>
-    </Grid>
+    </>
   );
 };
 

@@ -1,51 +1,52 @@
-'use client';
+"use client";
 
-import api from '@/api';
+import api from "@/api";
 import {
   addNewProduct,
   editProductDetailsRoute,
-} from '@/common/constants/routes';
-import ProductCard from '@/content/products/card/ProductCard';
-import { productList } from '@/content/products/view/style';
-import { ProductsType } from '@/types/product';
-import { Box, Button, Grid, Typography } from '@mui/material';
-import { get, isArray } from 'lodash';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+} from "@/common/constants/routes";
+import ProductCard from "@/content/products/card/ProductCard";
+import { productList } from "@/content/products/view/style";
+import { webContainerPadding } from "@/styles/global.style";
+import { ProductsType } from "@/types/product";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import { get, isArray } from "lodash";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Products = () => {
-  const [serverError, setServerError] = useState<string>('');
+  const [serverError, setServerError] = useState<string>("");
   const [allProducts, setAllProducts] = useState<ProductsType[]>([]);
 
   const router = useRouter();
 
   useEffect(() => {
-    api('all-products', 'GET', null, { withCredentials: true })
+    api("all-products", "GET", null, { withCredentials: true })
       .then((response: any) => {
         if (isArray(response.data)) {
           const products: ProductsType[] = response.data;
           setAllProducts(products);
         } else if (response.error) {
-          setServerError(get(response, 'error.message'));
+          setServerError(get(response, "error.message"));
         }
       })
       .catch((err: any) => console.log(err));
   }, []);
 
   return (
-    <Grid container padding={'3rem'}>
-      <Grid item xs={12} padding={'1rem'}>
-        <Box textAlign={'center'}>
+    <Grid container p={webContainerPadding}>
+      <Grid item xs={12} padding={"1rem"}>
+        <Box textAlign={"center"}>
           {serverError && (
-            <Typography variant="h5" color={'red'}>
+            <Typography variant="h5" color={"red"}>
               Error: {serverError}
             </Typography>
           )}
         </Box>
       </Grid>
-      <Grid item xs={12} padding={'1rem'}>
-        <Box textAlign={'center'}>
+      <Grid item xs={12} padding={"1rem"}>
+        <Box textAlign={"center"}>
           <Button
             fullWidth
             variant="outlined"
@@ -55,14 +56,14 @@ const Products = () => {
           </Button>
         </Box>
       </Grid>
-      <Grid item xs={12} padding={'1rem'}>
-        <Box textAlign={'center'}>
+      <Grid item xs={12} padding={"1rem"}>
+        <Box textAlign={"center"}>
           <Typography variant="h4">ALL PRODUCTS</Typography>
         </Box>
-        <Box textAlign={'center'}>
+        <Box textAlign={"center"}>
           <Typography variant="h5">click to edit</Typography>
         </Box>
-        <Box textAlign={'center'}>
+        <Box textAlign={"center"}>
           <Typography variant="subtitle1">
             TOTAL: {allProducts.length}
           </Typography>
