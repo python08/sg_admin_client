@@ -1,4 +1,4 @@
-import Explore from '@content/explore';
+import Explore from "@content/explore";
 
 type LayoutProps = {
   children: React.ReactNode;

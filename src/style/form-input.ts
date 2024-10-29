@@ -1,0 +1,1 @@
+export const FormInputStyle = { mb: 2, width: "80%" };

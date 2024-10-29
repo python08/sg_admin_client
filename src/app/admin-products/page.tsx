@@ -7,7 +7,6 @@ import {
 } from "@/common/constants/routes";
 import ProductCard from "@/content/products/card/ProductCard";
 import { productList } from "@/content/products/view/style";
-import { webContainerPadding } from "@/styles/global.style";
 import { ProductsType } from "@/types/product";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { get, isArray } from "lodash";
@@ -35,7 +34,7 @@ const Products = () => {
   }, []);
 
   return (
-    <Grid container p={webContainerPadding}>
+    <Grid container padding={"3rem"}>
       <Grid item xs={12} padding={"1rem"}>
         <Box textAlign={"center"}>
           {serverError && (

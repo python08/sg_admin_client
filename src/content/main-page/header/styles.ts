@@ -1,7 +1,7 @@
-import { colors } from '@mui/material';
+import { colors } from "@mui/material";
 
 const appbar = {
-  background: 'none',
+  background: "none",
 };
 
 export const style = {
@@ -10,9 +10,9 @@ export const style = {
 
 export const title = {
   display: {
-    xs: 'block',
-    sm: 'block',
+    xs: "block",
+    sm: "block",
     color: colors.common.black,
-    paddingRight: '0.4rem',
+    paddingRight: "0.4rem",
   },
 };

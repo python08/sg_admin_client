@@ -1,8 +1,8 @@
-import { Box } from '@mui/material';
-import Tabs from '@mui/material/Tabs';
-import Loader from '@components/Backdrop/Loader';
+import { Box } from "@mui/material";
+import Tabs from "@mui/material/Tabs";
+import Loader from "@components/Backdrop/Loader";
 
-import ProductChips from './ProductChips';
+import ProductChips from "./ProductChips";
 
 // FP chips
 const ProductSlider = () => {
@@ -17,14 +17,14 @@ const ProductSlider = () => {
   if (!products) return <Loader open />;
 
   return (
-    <Box sx={{ bgcolor: 'background.paper', fontSize: '48px' }}>
+    <Box sx={{ bgcolor: "background.paper", fontSize: "48px" }}>
       <Tabs
         variant="scrollable"
         scrollButtons={false}
         aria-label="scrollable prevent tabs example"
       >
         {products.map((product) => (
-          <ProductChips key={product.name} label={product.name} />
+          <ProductChips label={product.name} key={product.name}/>
         ))}
       </Tabs>
     </Box>

@@ -1,36 +1,42 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import { Grid, Typography, Box, Button } from '@mui/material';
-import { style } from '@content/landing-page/style';
-import { ProductsType } from '@common/temp/temp';
-import ProductCard from '@/content/products/card/ProductCard';
-import { color } from '@global/colors';
-import Hero from '@content/landing-page/Hero';
-import HeroDescription from '@content/landing-page/HeroDescription';
-import FallBack from '@components/ErrorFallBack/FallBack';
-import { isEmpty } from 'lodash';
+import Image from "next/image";
+import Link from "next/link";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import { Grid, Typography, Box, Button } from "@mui/material";
+import { style } from "@content/landing-page/style";
+import { ProductsType } from "@common/temp/temp";
+import GridViewProductCard from "@content/products/card/GridViewProductCard";
+import { color } from "@global/colors";
+import Hero from "@content/landing-page/Hero";
+import HeroDescription from "@content/landing-page/HeroDescription";
+import FallBack from "@components/ErrorFallBack/FallBack";
+import { isEmpty } from "lodash";
 
-import { getAllProducts } from '@/api/product/product';
-import ModakImage from 'public/assests/Modak.jpg';
-import { useEffect, useState } from 'react';
-import { route } from '@/common/constants/routes';
+import { getAllProducts } from "src/apis/product/product";
+import ModakImage from "public/assests/Modak.jpg";
+import { useEffect, useState } from "react";
+import { previewProductDetailsRoute, route } from "@/common/constants/routes";
+import { useRouter } from "next/navigation";
 
 /* eslint-disable */
 export default function Page() {
   const [products, setProducts] = useState<ProductsType[]>([]);
+  const router = useRouter();
   const theme = useTheme();
   const lgDown = useMediaQuery(theme.breakpoints.down("lg"));
   const xlUp = useMediaQuery(theme.breakpoints.up("xl"));
 
   useEffect(() => {
     getAllProducts().then((resp) => {
-      setProducts(resp.error ? [] : resp.data);
+      setProducts(resp.error ? [] : resp);
     });
   }, []);
+
+  const handleClick = (productId: string | number) => {
+    router.push(previewProductDetailsRoute(productId));
+  };
 
   if (isEmpty(products)) {
     return <FallBack />;
@@ -105,13 +111,14 @@ export default function Page() {
                 return (
                   // eslint-disable
                   <Grid item xs={12} sm={12} md={12} lg={4} xl={4} key={_id}>
-                    <ProductCard
+                    <GridViewProductCard
                       // eslint-disable
                       productId={_id}
                       cardMediaHeight="260"
                       img={link}
                       title={name}
                       description={description}
+                      onClick={() => handleClick(_id)}
                       sx={{
                         borderRadius: "10px",
                         margin: "2rem",

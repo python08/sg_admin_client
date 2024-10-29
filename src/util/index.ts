@@ -64,7 +64,7 @@ export function hasNumber(myString: string) {
 }
 
 export const splitBrief: any = (brief: string) => {
-  const details: any = {};
+  let details: any = {};
   brief.split("*").forEach((brief, index) => {
     details[`brief${index + 1}`] = brief;
   });
@@ -83,39 +83,37 @@ export const getCombinedString = (data: any) => {
  * @param {string} [parentKey] - The parent key for nested objects (optional)
  * @returns {FormData} - The FormData object with appended key-value pairs
  */
-export function objectToFormData(
-  data: Record<string, any>,
-  formData: FormData = new FormData(),
-  parentKey?: string
-): FormData {
-  Object.keys(data).forEach((key) => {
-    const value = data[key];
-    const formKey = parentKey ? `${parentKey}[${key}]` : key;
+export function objectToFormData(data: Record<string, any>, formData: FormData = new FormData(), parentKey?: string): FormData {
+    Object.keys(data).forEach(key => {
+        const value = data[key];
+        const formKey = parentKey ? `${parentKey}[${key}]` : key;
+        
+        if (value instanceof Date) {
+            formData.append(formKey, value.toISOString());
+        } else if (value instanceof File) {
+            formData.append(formKey, value);
+        } else if (Array.isArray(value)) {
+            value.forEach((element, index) => {
+                const arrayKey = `${formKey}[${index}]`;
+                objectToFormData({ [arrayKey]: element }, formData);
+            });
+        } else if (typeof value === 'object' && value !== null) {
+            objectToFormData(value, formData, formKey);
+        } else {
+            formData.append(formKey, value);
+        }
+    });
 
-    if (value instanceof Date) {
-      formData.append(formKey, value.toISOString());
-    } else if (value instanceof File) {
-      formData.append(formKey, value);
-    } else if (Array.isArray(value)) {
-      value.forEach((element, index) => {
-        const arrayKey = `${formKey}[${index}]`;
-        objectToFormData({ [arrayKey]: element }, formData);
-      });
-    } else if (typeof value === "object" && value !== null) {
-      objectToFormData(value, formData, formKey);
-    } else {
-      formData.append(formKey, value);
-    }
-  });
-
-  return formData;
+    return formData;
 }
 
-export const setObjToStorage = (obj: any, keyName: string): void => {
-  localStorage.setItem(keyName, JSON.stringify(obj));
-};
-
-export const getObjFromLocalStorage = (keyName: string): object => {
-  const retrievedObject = localStorage.getItem(keyName);
-  return JSON.parse(retrievedObject);
-};
+// Example usage
+// const data = {
+//     fieldName1: 'value1',
+//     fieldName2: 'value2',
+//     files: [file1, file2], // Assuming file1 and file2 are File objects
+//     nested: {
+//         innerField1: 'innerValue1',
+//         innerArray: ['arrayValue1', 'arrayValue2']
+//     }
+// };

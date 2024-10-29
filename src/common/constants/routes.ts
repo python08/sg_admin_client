@@ -13,9 +13,6 @@ export const route = {
       home: "/home",
     },
   },
-  register: {
-    l: "/register",
-  },
 };
 
 export const previewProductDetailsRoute = (productId: string | number) =>

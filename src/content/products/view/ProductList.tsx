@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { Box, Grid } from '@mui/material';
-import { ProductsType } from '@common/temp/temp';
-import { displayFlexCenter } from '@global/global.style';
+import { Box, Grid } from "@mui/material";
+import { ProductsType } from "@common/temp/temp";
+import { displayFlexCenter } from "@global/global.style";
 
-import ProductCard from '../card/ProductCard';
-import { productList } from './style';
-import { Headline } from '../../../common/components/Headline/Headline';
-import { previewProductDetailsRoute } from '@/common/constants/routes';
-import { useRouter } from 'next/navigation';
+import ProductCard from "../card/ProductCard";
+import { productList } from "./style";
+import { Headline } from "../../../common/components/Headline/Headline";
+import { previewProductDetailsRoute } from "@/common/constants/routes";
+import { useRouter } from "next/navigation";
 
 type ProductListType = {
   products: ProductsType[];
@@ -20,7 +20,7 @@ const ViewProductList = ({ products, height, headLine }: ProductListType) => {
   const router = useRouter();
   return (
     <>
-      <Box sx={{ textAlign: 'center' }} pb="1rem">
+      <Box sx={{ textAlign: "center" }} pb="1rem">
         {headLine && <Headline headLine={headLine} />}
       </Box>
       <Box sx={displayFlexCenter}>

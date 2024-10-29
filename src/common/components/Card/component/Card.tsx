@@ -1,12 +1,12 @@
-import { CardActionArea, SxProps, Theme } from '@mui/material';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { color } from '@global/colors';
-import { CardStyle } from '@components/styles/style';
+import { CardActionArea, SxProps, Theme } from "@mui/material";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { color } from "@global/colors";
+import { CardStyle } from "@components/styles/style";
+import { EmotionJSX } from "node_modules/@emotion/react/dist/declarations/types/jsx-namespace";
 
-import { MuiCard } from './index';
-import { EmotionJSX } from 'node_modules/@emotion/react/types/jsx-namespace';
+import { MuiCard } from "./index";
 
 type ProductCardType = {
   title?: string;
@@ -43,15 +43,15 @@ const Card = (props: ProductCardType) => {
         variant="body1"
         component="h5"
         lineHeight={lineHeight}
-        fontSize={img ? '' : '2.5rem'}
+        fontSize={img ? "" : "2.5rem"}
       >
         {title}
       </Typography>
       <Typography
-        variant={productCard ? 'body2' : 'subtitle1'}
+        variant={productCard ? "body2" : "subtitle1"}
         color={color.grey[0]}
         lineHeight={lineHeight}
-        fontSize={img ? '' : '2rem'}
+        fontSize={img ? "" : "2rem"}
       >
         {description}
       </Typography>
@@ -66,7 +66,7 @@ const Card = (props: ProductCardType) => {
         {img && (
           <CardMedia
             component="img"
-            height={cardMediaHeight || '200'}
+            height={cardMediaHeight || "200"}
             image={cardImage}
             alt={title}
           />

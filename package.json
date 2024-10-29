@@ -4,27 +4,21 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "type-check": "tsc --noEmit",
     "build": "next build",
     "start": "next start",
-    "tsc:watch": "tsc --noEmit --watch"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.4",
+    "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.6.0",
     "@mui/icons-material": "^5.15.19",
-    "@mui/material": "^5.16.1",
+    "@mui/material": "^5.15.19",
     "@mui/material-nextjs": "^5.15.11",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
     "axios": "^1.7.2",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
     "lodash": "^4.17.21",
     "next": "14.2.3",
-    "prettier": "^3.3.2",
     "react": "^18",
     "react-cookie": "^7.1.4",
     "react-dom": "^18",
@@ -38,8 +32,10 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8.57.0",
+    "concurrently": "^9.0.1",
+    "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "eslint-watch": "^8.0.0",
     "typescript": "^5"
   }
 }

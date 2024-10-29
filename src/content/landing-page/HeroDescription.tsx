@@ -1,8 +1,8 @@
-import { Box, Typography } from '@mui/material';
-import Image from 'next/image';
+import { Box, Typography } from "@mui/material";
+import Image from "next/image";
 
-import { heroDescriptionStyle, style } from './style';
-import Karanji from '../../../public/assests/Karanji.jpg';
+import { heroDescriptionStyle, style } from "./style";
+import Karanji from "../../../public/assests/Karanji.jpg";
 
 type HeroDescriptionType = {
   lgDown: boolean;
@@ -16,16 +16,16 @@ const HeroDescription = ({ lgDown, xlUp }: HeroDescriptionType) => {
         src={Karanji.src}
         alt="Modak"
         fill
-        style={{ objectFit: 'cover', zIndex: -1 }}
+        style={{ objectFit: "cover", zIndex: -1 }}
       />
     </Box>
   );
 
   const getHeroDescription = (smallSize: boolean) => {
     const description =
-      'Indulge in the rich flavours of authentic homemade Indian sweets and savoury delights at our online hub.';
+      "Indulge in the rich flavours of authentic homemade Indian sweets and savoury delights at our online hub.";
     const extra =
-      ' Explore a culinary journey that celebrates tradition and taste.';
+      " Explore a culinary journey that celebrates tradition and taste.";
     return smallSize ? `${description}` : `${description}${extra}`;
   };
 
@@ -38,7 +38,7 @@ const HeroDescription = ({ lgDown, xlUp }: HeroDescriptionType) => {
         fontWeight={200}
         sx={
           lgDown
-            ? { padding: '0rem 1rem 1rem 1rem' }
+            ? { padding: "0rem 1rem 1rem 1rem" }
             : heroDescriptionStyle(xlUp)
         }
       >

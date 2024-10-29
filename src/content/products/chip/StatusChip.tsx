@@ -1,5 +1,5 @@
-import { color } from '@/styles/colors';
-import { Chip } from '@mui/material';
+import { color } from "@/styles/colors";
+import { Chip } from "@mui/material";
 
 type StatusChipProps = {
   message: string;
@@ -10,10 +10,10 @@ const StatusChip = (props: StatusChipProps) => {
   const { message, isActive } = props;
 
   const style = {
-    position: 'absolute',
+    position: "absolute",
     bottom: 120,
     left: 10,
-    color: 'white',
+    color: "white",
     backgroundColor: isActive ? color.main.green : color.main.red,
   };
 

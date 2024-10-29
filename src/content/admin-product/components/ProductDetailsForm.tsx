@@ -31,7 +31,7 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
 
   const productId = getValues("_id");
 
-  const uploadProductImage: UploadProductImageProps = {
+  const uploadProductImageProps: UploadProductImageProps = {
     getValues,
     editImage,
     previewImage,
@@ -42,10 +42,8 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
 
   return (
     <Grid container>
-      <Grid item xs={12} sm={12} md={6} lg={6}>
-        <UploadProductImage {...uploadProductImage} />
-      </Grid>
-      <Grid item xs={12} sm={12} md={6} lg={6}>
+      <UploadProductImage {...uploadProductImageProps} />
+      <Grid item xs={6}>
         <Box component="form" sx={FormStyle}>
           <TextField
             {...register("name", { required: true })}

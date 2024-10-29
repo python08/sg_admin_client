@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState, createContext } from 'react';
-import { Box } from '@mui/material';
-import Footer from '@content/main-page/footer/Footer';
-import Header, { Anchor } from '@content/main-page/header/Header';
+import { useState, createContext } from "react";
+import { Box } from "@mui/material";
+import Footer from "@content/main-page/footer/Footer";
+import Header, { Anchor } from "@content/main-page/header/Header";
 
-import { style } from '@/content/main-page/body/style';
+import { style } from "@/content/main-page/body/style";
 
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
@@ -28,9 +28,9 @@ const Explore = ({ children }: ExplorePropType) => {
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event &&
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
       ) {
         return;
       }

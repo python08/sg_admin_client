@@ -4,7 +4,7 @@ import {
   PreviewImageStyle,
 } from "@/styles/product";
 import { UploadProductImageProps } from "@/types/admin-product";
-import { Box, Button, CardMedia } from "@mui/material";
+import { Box, Button, CardMedia, Grid } from "@mui/material";
 
 const UploadProductImage = (props: UploadProductImageProps) => {
   const {
@@ -54,7 +54,7 @@ const UploadProductImage = (props: UploadProductImageProps) => {
   };
 
   return (
-    <>
+    <Grid item xs={6}>
       <Box sx={ImageContainerStyle}>
         {apiCall === "PUT" && updateImage()}
         {apiCall === "POST" && addNewImage()}
@@ -68,7 +68,7 @@ const UploadProductImage = (props: UploadProductImageProps) => {
           ))}
         {apiCall === "POST" && <UploadImage onImageChange={onImageChange} />}
       </Box>
-    </>
+    </Grid>
   );
 };
 

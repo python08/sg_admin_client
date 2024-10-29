@@ -1,5 +1,5 @@
-import { WhatsappShareStyle } from '@components/styles/style';
-import { Box, Button } from '@mui/material';
+import { WhatsappShareStyle } from "@components/styles/style";
+import { Box, Button } from "@mui/material";
 
 type WhatsappShareProps = {
   quantity: string | number;
@@ -8,7 +8,7 @@ type WhatsappShareProps = {
 
 export const WhatsappShare = (props: WhatsappShareProps) => {
   const { productTitle, quantity } = props;
-  const number = '919702535617';
+  const number = "919702535617";
   const text = `More details for ${quantity} quantity of ${productTitle}`;
   const link = `https://wa.me/${number}?text=${encodeURI(text)}`;
 

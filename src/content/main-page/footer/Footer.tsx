@@ -1,12 +1,12 @@
-import { Box, Grid, Typography } from '@mui/material';
-import GoogleIcon from '@mui/icons-material/Google';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import { fontWeight } from '@global/font';
-import { color } from '@global/colors';
-import PlatformLink from '@components/platform-link/PlatformLink';
-import { platformLinks } from '@common/constants/platform-links';
+import { Box, Grid, Typography } from "@mui/material";
+import GoogleIcon from "@mui/icons-material/Google";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import { fontWeight } from "@global/font";
+import { color } from "@global/colors";
+import PlatformLink from "@components/platform-link/PlatformLink";
+import { platformLinks } from "@common/constants/platform-links";
 
-import { style } from './style';
+import { style } from "./style";
 
 const Footer = () => (
   <Box sx={style.container}>

@@ -1,5 +1,5 @@
-import { checkResponse } from '@/util';
-import axios, { AxiosResponse } from 'axios';
+import { checkResponse } from "@/util";
+import axios, { AxiosResponse } from "axios";
 
 type MethodType = {
   PUT: string;
@@ -14,22 +14,22 @@ const api = async (
   route: string,
   method: ApiMethod,
   data?: any,
-  config?: object,
+  config?: object
 ) => {
   let res: AxiosResponse | null = null;
   const url = `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/${route}`;
   try {
     switch (method) {
-      case 'POST':
+      case "POST":
         res = await axios.post(url, data, config);
         break;
-      case 'PUT':
+      case "PUT":
         res = await axios.put(url, data, config);
         break;
-      case 'GET':
+      case "GET":
         res = await axios.get(url, config);
         break;
-      case 'DELETE':
+      case "DELETE":
         res = await axios.delete(url, config);
         break;
     }
@@ -48,6 +48,6 @@ export default api;
 export const apiOptions = {
   withCredentials: true,
   headers: {
-    'Content-Type': 'multipart/form-data',
+    "Content-Type": "multipart/form-data",
   },
 };

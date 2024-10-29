@@ -1,4 +1,4 @@
 export const Section = {
-  main: 'main',
-  suggested: 'suggested',
+  main: "main",
+  suggested: "suggested",
 };

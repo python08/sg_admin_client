@@ -1,6 +1,6 @@
 export const Categories = {
-  Ladoo: 'ladoo',
-  Others: 'others',
+  Ladoo: "ladoo",
+  Others: "others",
 } as const;
 
 // Convert object key in a type

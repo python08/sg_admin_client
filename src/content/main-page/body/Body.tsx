@@ -1,20 +1,18 @@
-'use client';
+"use client";
 
-import ViewProductList from '@/content/products/view/ProductList';
-import FlexViewProductList from '@content/products/view/flex/ProductList';
-import Updates from '@content/updates/Updates';
-import { Box, Grid } from '@mui/material';
-import { Categories } from '@common/temp/temp';
-import WelcomeVideo from '@content/display-video/DisplayVideo';
-import { Headline } from '@components/Headline/Headline';
-import { Section } from '@content/products/constant/main';
-import { getProductByCategory } from '@content/products/utils/utils';
+import ViewProductList from "@/content/products/view/ProductList";
+import FlexViewProductList from "@content/products/view/flex/ProductList";
+import { Box, Grid } from "@mui/material";
+import { Categories } from "@common/temp/temp";
+import { Headline } from "@components/Headline/Headline";
+import { Section } from "@content/products/constant/main";
+import { getProductByCategory } from "@content/products/utils/utils";
 
-import { style } from './style';
-import { BodyProps } from './model';
+import { style } from "./style";
+import { BodyProps } from "./model";
 
 const Body = (props: BodyProps) => {
-  const { products, updates } = props;
+  const { products } = props;
 
   if (!products) return null;
 
@@ -24,16 +22,14 @@ const Body = (props: BodyProps) => {
     <>
       <Grid container>
         <Grid item xs={12}>
-          <WelcomeVideo />
         </Grid>
       </Grid>
       <Box sx={style.main}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Updates updates={updates} />
           </Grid>
           <Grid item xs={12} pb="3rem">
-            <Box sx={{ textAlign: 'center' }} pb="1rem">
+            <Box sx={{ textAlign: "center" }} pb="1rem">
               <Headline
                 headLine="Indulge in the Irresistible Charm of Traditional Indian Ladoo
           Delights!"
