@@ -11,6 +11,7 @@ import { ProductsType } from "@/types/product";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { get, isArray } from "lodash";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { webContainerPadding } from "@/styles/global.style";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -34,7 +35,7 @@ const Products = () => {
   }, []);
 
   return (
-    <Grid container padding={"3rem"}>
+    <Grid container p={webContainerPadding}>
       <Grid item xs={12} padding={"1rem"}>
         <Box textAlign={"center"}>
           {serverError && (

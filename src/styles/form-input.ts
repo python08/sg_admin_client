@@ -1,4 +1,4 @@
-export const FormInputStyle = { mb: 2, width: "80%" };
+export const FormInputStyle = { mb: 2 };
 export const FormStyle = {
     display: "flex",
     alignItems: "center",

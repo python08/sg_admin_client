@@ -83,29 +83,44 @@ export const getCombinedString = (data: any) => {
  * @param {string} [parentKey] - The parent key for nested objects (optional)
  * @returns {FormData} - The FormData object with appended key-value pairs
  */
-export function objectToFormData(data: Record<string, any>, formData: FormData = new FormData(), parentKey?: string): FormData {
-    Object.keys(data).forEach(key => {
-        const value = data[key];
-        const formKey = parentKey ? `${parentKey}[${key}]` : key;
-        
-        if (value instanceof Date) {
-            formData.append(formKey, value.toISOString());
-        } else if (value instanceof File) {
-            formData.append(formKey, value);
-        } else if (Array.isArray(value)) {
-            value.forEach((element, index) => {
-                const arrayKey = `${formKey}[${index}]`;
-                objectToFormData({ [arrayKey]: element }, formData);
-            });
-        } else if (typeof value === 'object' && value !== null) {
-            objectToFormData(value, formData, formKey);
-        } else {
-            formData.append(formKey, value);
-        }
-    });
+export function objectToFormData(
+  data: Record<string, any>,
+  formData: FormData = new FormData(),
+  parentKey?: string
+): FormData {
+  Object.keys(data).forEach((key) => {
+    const value = data[key];
+    const formKey = parentKey ? `${parentKey}[${key}]` : key;
 
-    return formData;
+    if (value instanceof Date) {
+      formData.append(formKey, value.toISOString());
+    } else if (value instanceof File) {
+      formData.append(formKey, value);
+    } else if (Array.isArray(value)) {
+      value.forEach((element, index) => {
+        const arrayKey = `${formKey}[${index}]`;
+        objectToFormData({ [arrayKey]: element }, formData);
+      });
+    } else if (typeof value === "object" && value !== null) {
+      objectToFormData(value, formData, formKey);
+    } else {
+      formData.append(formKey, value);
+    }
+  });
+
+  return formData;
 }
+
+export const setObjToStorage = (obj: any, keyName: string): void => {
+  localStorage.setItem(keyName, JSON.stringify(obj));
+};
+export const getObjFromLocalStorage = (keyName: string): object => {
+  const retrievedObject = localStorage.getItem(keyName);
+  if (typeof retrievedObject === "string") {
+    return JSON.parse(retrievedObject);
+  }
+  return {};
+};
 
 // Example usage
 // const data = {

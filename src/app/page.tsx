@@ -1,10 +1,13 @@
 "use client";
 
 import useSWR from "swr";
-import { Box, Button, FormHelperText } from "@mui/material";
-import { fetcher } from "@/util";
+import { Box, Button, FormHelperText, Grid } from "@mui/material";
+import { fetcher, getObjFromLocalStorage, setObjToStorage } from "@/util";
 import { useRouter } from "next/navigation";
 import { addNewProduct, route } from "@/common/constants/routes";
+import { webContainerPadding } from "@/styles/global.style";
+import { get } from "lodash";
+import { UserRole } from "@/common/constants/user-role";
 
 const Home = () => {
   const { data, error } = useSWR(
@@ -13,70 +16,86 @@ const Home = () => {
   );
   const router = useRouter();
 
-  return (
-    <Box
-      component="form"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: 3,
-      }}
-    >
-      <Box height={"1rem"}>
-        {error && (
-          <>
-            <FormHelperText sx={{ color: "red" }}>please login</FormHelperText>
+  if (get(data, "_id")) {
+    setObjToStorage(data, "user");
+  }
+  const authorizedUser =
+    get(getObjFromLocalStorage("user"), "role") === UserRole.superAdmin;
 
-            <Box sx={{ mb: 2, width: "50%" }}>
-              <Button
-                variant="outlined"
-                fullWidth
-                onClick={() => router.push("/login")}
-              >
-                Login
-              </Button>
-            </Box>
-          </>
-        )}
-        {data && (
-          <FormHelperText sx={{ color: "blue" }}>
-            Welcome {data.name}
-          </FormHelperText>
-        )}
-      </Box>
-      {data && (
-        <>
-          <Box sx={{ mt: 2, mb: 2, width: "50%" }}>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => router.push(addNewProduct())}
-            >
-              Add Product
-            </Button>
+  return (
+    <Grid container p={webContainerPadding}>
+      <Grid item xs={12} sm={12} md={2} lg={3}></Grid>
+      <Grid item xs={12} sm={12} md={8} lg={6}>
+        <Box component="form">
+          <Box height={"1rem"}>
+            {error && (
+              <>
+                <FormHelperText sx={{ color: "red", textAlign: "center" }}>
+                  please login
+                </FormHelperText>
+                <Box sx={{ mb: 2 }}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    onClick={() => router.push("/login")}
+                  >
+                    Login
+                  </Button>
+                </Box>
+              </>
+            )}
+            {data && (
+              <FormHelperText sx={{ color: "blue", textAlign: "center" }}>
+                Welcome {data.name}
+              </FormHelperText>
+            )}
           </Box>
-          <Box sx={{ mt: 2, mb: 2, width: "50%" }}>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => router.push(route.adminProducts.l)}
-            >
-              View or Update Products
-            </Button>
-          </Box>
-          <Box sx={{ mt: 2, mb: 2, width: "50%" }}>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => router.push(route.preview.l)}
-            >
-              LIVE WEB-APP
-            </Button>
-          </Box>
-        </>
-      )}
-    </Box>
+          {data && (
+            <>
+              <Box sx={{ mt: 2, mb: 2 }}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => router.push(addNewProduct())}
+                >
+                  Add Product
+                </Button>
+              </Box>
+              <Box sx={{ mt: 2, mb: 2 }}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => router.push(route.adminProducts.l)}
+                >
+                  View or Update Products
+                </Button>
+              </Box>
+              <Box sx={{ mt: 2, mb: 2 }}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => router.push(route.preview.l)}
+                >
+                  LIVE WEB-APP
+                </Button>
+              </Box>
+              {authorizedUser && (
+                <Box sx={{ mt: 2, mb: 2 }}>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    onClick={() => router.push(route.register.l)}
+                  >
+                    ADD USER
+                  </Button>
+                </Box>
+              )}
+            </>
+          )}
+        </Box>
+      </Grid>
+      <Grid item xs={12} sm={12} md={2} lg={3}></Grid>
+    </Grid>
   );
 };
 

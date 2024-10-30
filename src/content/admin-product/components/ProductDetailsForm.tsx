@@ -1,18 +1,27 @@
 import SelectMui from "@/common/components/form/select-input/SelectMui";
 import { FormInputStyle, FormStyle } from "@/styles/form-input";
 import { checkError } from "@/util";
-import { Box, Button, Grid, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  TextField,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { useRouter } from "next/navigation";
 import {
   ProductDetailsFormProps,
   UploadProductImageProps,
 } from "@/types/admin-product";
 import UploadProductImage from "./UploadProductImage";
-import { displayFlexAlignCenter } from "@/styles/global.style";
+import { displayFlexCenter } from "@/styles/global.style";
 import { previewProductDetailsRoute } from "@/common/constants/routes";
 
 const ProductDetailsForm = (props: ProductDetailsFormProps) => {
   const router = useRouter();
+  const theme = useTheme();
+  const smActive = useMediaQuery(theme.breakpoints.down("md"));
 
   const {
     editImage,
@@ -42,10 +51,13 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
 
   return (
     <Grid container>
-      <UploadProductImage {...uploadProductImageProps} />
-      <Grid item xs={6}>
-        <Box component="form" sx={FormStyle}>
+      <Grid item xs={12} sm={12} md={6} lg={6}>
+        <UploadProductImage {...uploadProductImageProps} />
+      </Grid>
+      <Grid item xs={12} sm={12} md={6} lg={6}>
+        <Box component="form">
           <TextField
+            fullWidth
             {...register("name", { required: true })}
             label="Name"
             error={!!errors.name}
@@ -55,6 +67,7 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
             InputLabelProps={{ shrink: true }}
           />
           <TextField
+            fullWidth
             {...register("title", { required: true })}
             label="Title"
             error={!!errors.title}
@@ -64,6 +77,7 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
             InputLabelProps={{ shrink: true }}
           />
           <TextField
+            fullWidth
             {...register("description", { required: true })}
             label="Description"
             error={!!errors.description}
@@ -75,6 +89,7 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
             InputLabelProps={{ shrink: true }}
           />
           <TextField
+            fullWidth
             {...register("price", { required: true })}
             label="Price"
             error={!!errors.price}
@@ -84,6 +99,7 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
             InputLabelProps={{ shrink: true }}
           />
           <TextField
+            fullWidth
             {...register("brief1", { required: true })}
             label="product brief 1"
             error={!!errors.brief1}
@@ -95,6 +111,7 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
             InputLabelProps={{ shrink: true }}
           />
           <TextField
+            fullWidth
             {...register("brief2", { required: true })}
             label="product brief 2"
             error={!!errors.brief2}
@@ -106,6 +123,7 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
             InputLabelProps={{ shrink: true }}
           />
           <TextField
+            fullWidth
             {...register("brief3", { required: true })}
             label="product brief 3"
             error={!!errors.brief3}
@@ -117,6 +135,7 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
             InputLabelProps={{ shrink: true }}
           />
           <TextField
+            fullWidth
             {...register("brief4", { required: true })}
             label="product brief 4"
             error={!!errors.brief4}
@@ -147,7 +166,7 @@ const ProductDetailsForm = (props: ProductDetailsFormProps) => {
             optionValueKeyName={"_id"}
             required
           />
-          <Box sx={displayFlexAlignCenter}>
+          <Box sx={displayFlexCenter}>
             {typeof productId === "string" && (
               <Button
                 variant="outlined"
