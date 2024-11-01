@@ -112,12 +112,16 @@ export function objectToFormData(
 }
 
 export const setObjToStorage = (obj: any, keyName: string): void => {
-  localStorage.setItem(keyName, JSON.stringify(obj));
+  if (typeof window !== "undefined") {
+    localStorage.setItem(keyName, JSON.stringify(obj));
+  }
 };
 export const getObjFromLocalStorage = (keyName: string): object => {
-  const retrievedObject = localStorage.getItem(keyName);
-  if (typeof retrievedObject === "string") {
-    return JSON.parse(retrievedObject);
+  if (typeof window !== "undefined") {
+    const retrievedObject = localStorage.getItem(keyName);
+    if (typeof retrievedObject === "string") {
+      return JSON.parse(retrievedObject);
+    }
   }
   return {};
 };

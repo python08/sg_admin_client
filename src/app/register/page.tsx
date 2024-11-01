@@ -2,7 +2,14 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TextField, Button, Box, FormHelperText, Grid, Typography } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  FormHelperText,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { RegisterUserInput, registerUserScehma } from "@/schema/schema";
 import { checkError, getObjFromLocalStorage } from "@/util";
 import { useState } from "react";
@@ -16,13 +23,6 @@ import { webContainerPadding } from "@/styles/global.style";
 const LoginForm = () => {
   const [response, setResponse] = useState<any>(null);
   const router = useRouter();
-
-  if (!(get(getObjFromLocalStorage("user"), "role") === UserRole.superAdmin)) {
-    setTimeout(() => {
-      router.push("/");
-    }, 3000);
-    return <Unauthorized />;
-  }
   const {
     register,
     handleSubmit,
@@ -31,6 +31,12 @@ const LoginForm = () => {
     resolver: zodResolver(registerUserScehma),
   });
 
+  if (!(get(getObjFromLocalStorage("user"), "role") === UserRole.superAdmin)) {
+    setTimeout(() => {
+      router.push("/");
+    }, 3000);
+    return <Unauthorized />;
+  }
   const onSubmit = async (data: RegisterUserInput) => {
     const res = await api(`users`, "POST", data);
     // navigate to login page
